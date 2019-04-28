@@ -1,0 +1,45 @@
+<!--index.wxml-->
+<scroll-view>
+  <view class='item'  wx:for="{{datas}}" wx:key="{{index}}">
+    <navigator class='flexDownC' url='../itemDetail/itemDetail?id={{item.id}}'>
+      <view class='userInfo flexRowL'>
+        <view class='user flexC'>
+          <image src='{{item.avatar || defaultImg}}' class='userImg'></image>
+            {{item.username || '哈皮小司机'}}
+          </view>
+        </view>
+      <view class='descBox'>{{item.desc}}</view>
+    <view class='imgBox'>
+      <image lazy-load="{{lazy_load}}"
+             wx:for="{{item.images}}"
+             wx:for-item='imgItem'
+             wx:key='{{index}}'
+             mode='widthFix'
+             src='{{(imgItem) || ""}}'
+             class='{{item.images.length === 1 ? "dzImg1" : item.images.length === 2 ||  item.images.length === 4 ? "dzImg2" : (item.images.length === 3 || item.images.length === 5 || item.images.length === 6 || item.images.length === 7 || item.images.length === 8 || item.images.length === 9) ? "dzImg3" : "" }} dzImg' ></image>
+    </view>
+  </navigator>
+  <view class='btnsRow flexRowL'>
+    <view class='ml20  flexC' bindtap='zan' data-index='{{index}}'>
+      <image src='{{item.zanUrl}}' class='btns ml20' ></image> 
+      <text class='ml10'> {{item.vote || 0}}</text>
+    </view>
+    <view class='ml60 flexC' bindtap='nav2Detail' data-id='{{item.id}}'>
+      <image src='../../images/comment.png' class='btns ml40'></image>
+      <text class='ml10'> {{item.commentNum || 0}}</text>
+    </view>
+    <view class='ml60 '><label class='flexC'   > <image src='../../images/share.png' class='btns ml40'></image> <text class='ml10'> {{item.shareNum || 0}}</text> <button open-type='share' hidden='hidden'  data-qiuId='{{item.id}}' data-shareNum='{{item.shareNum}}'></button> </label> </view>
+    </view>
+    <view class='garyLine'></view>
+  </view>
+
+<!-- <view class='pushTop' bindtap='refresh'>上拉|点击刷新...</view> -->
+</scroll-view>
+
+<!-- <navigator url='../publish/publish' class='posiFix'>
+  <image src='../../images/add.png' class='addIcon' > </image>
+</navigator> -->
+
+
+
+
